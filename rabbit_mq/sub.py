@@ -1,6 +1,6 @@
 import pika
 credentials = pika.PlainCredentials('sciot', 'Us47*nHgD')
-connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.2.107', 5672, '/', credentials))
+connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.0.3', 5672, '/', credentials))
 channel = connection.channel()
 
 channel.exchange_declare(exchange='sciot.topic', exchange_type='topic', durable=True, auto_delete=False)

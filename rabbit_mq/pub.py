@@ -2,12 +2,12 @@ import grovepi
 import time
 import pika
 
-port = 7
-sensor = 0
+port = 4# The Sensor goes on digital port 4.
+sensor = 0 # The Blue colored sensor code.
 timeout = 1
 
 credentials = pika.PlainCredentials('sciot', 'Us47*nHgD')
-connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.2.107', 5672, '/', credentials))
+connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.0.3', 5672, '/', credentials))
 channel = connection.channel()
 channel.exchange_declare(exchange='sciot.topic', exchange_type='topic', durable=True, auto_delete=False)
 
