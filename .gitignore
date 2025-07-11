@@ -1,0 +1,35 @@
+# === Python bytecode ===
+__pycache__/
+*.py[cod]
+*$py.class
+
+# === Environment ===
+.env
+.venv/
+venv/
+ENV/
+env/
+
+# === Token/Auth files ===
+token.json
+credentials.json
+
+# === Logs and outputs ===
+knowledge_base.json
+knowledge_log.csv
+
+# === Test and debug files ===
+*.log
+*.tmp
+
+# === macOS system files ===
+.DS_Store
+
+# === VS Code ===
+.vscode/
+
+# === PyCharm ===
+.idea/
+
+# === Jupyter notebooks checkpoint ===
+.ipynb_checkpoints/
