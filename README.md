@@ -51,8 +51,8 @@ project/
 ### 1. Clone the repository
 
 ```bash
-git clone <repository-url>
-cd project
+git clone https://github.com/MarioScheich/Smart-office-space-project.git
+cd Smart-office-space-project
 ```
 
 ### 2. Install dependencies
