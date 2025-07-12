@@ -35,16 +35,16 @@ def fetch_calendar():
     # Check if the token file exists
     if os.path.exists(TOKEN_PATH):
         creds = Credentials.from_authorized_user_file(TOKEN_PATH, SCOPES)
-        print("✅ Using existing credentials from token.json")
+        print("Using existing credentials from token.json")
     else:
-        print("🚀 No existing credentials found, initiating OAuth flow...")
+        print("No existing credentials found, initiating OAuth flow...")
         flow = InstalledAppFlow.from_client_config(client_config, SCOPES)
         creds = flow.run_local_server(port=0)
 
     # Save the new token
     with open(TOKEN_PATH, "w") as token:
         token.write(creds.to_json())
-        print("✅ token.json saved")
+        print("token.json saved")
 
     service = build("calendar", "v3", credentials=creds)
     now = datetime.datetime.utcnow().isoformat() + "Z"

@@ -11,7 +11,7 @@ RABBITMQ_PASS = os.getenv("RABBITMQ_PASS", "guest")
 EXCHANGE_NAME = "sciot.topic"
 
 def callback(ch, method, properties, body):
-    print(f"📩 Received [{method.routing_key}]: {body.decode()}")
+    print(f"Received [{method.routing_key}]: {body.decode()}")
 
 def start_subscriber(binding_keys=None):
     if binding_keys is None:
@@ -28,7 +28,7 @@ def start_subscriber(binding_keys=None):
     for key in binding_keys:
         channel.queue_bind(exchange=EXCHANGE_NAME, queue=queue_name, routing_key=key)
 
-    print(f"🔔 Waiting for messages on exchange '{EXCHANGE_NAME}' with keys: {binding_keys}. Press Ctrl+C to exit.")
+    print(f"Waiting for messages on exchange '{EXCHANGE_NAME}' with keys: {binding_keys}. Press Ctrl+C to exit.")
 
     channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=True)
     channel.start_consuming()
