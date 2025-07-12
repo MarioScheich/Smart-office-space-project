@@ -5,8 +5,7 @@ import datetime
 from utils.logger import log_to_csv
 
 def update_knowledge_base(weather, co2, calendar, dht_data):
-    print(f"\n Updating knowledge base at {time.time()}")
-
+    print("\n Updating knowledge base at {}".format(time.time()))
     timestamp = time.time()
     timestamp_human = datetime.datetime.utcfromtimestamp(timestamp).strftime("%Y-%m-%d %H:%M:%S")
 
@@ -24,7 +23,7 @@ def update_knowledge_base(weather, co2, calendar, dht_data):
     # Save knowledge base as JSON
     with open("knowledge/knowledge_base.json", "w") as f:
         json.dump(knowledge, f, indent=4)
-        print("✅ knowledge/knowledge_base.json updated")
+        print("knowledge/knowledge_base.json updated")
 
     # Log to CSV
     log_to_csv(knowledge)
