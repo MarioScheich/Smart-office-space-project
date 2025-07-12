@@ -5,7 +5,7 @@ import datetime
 from utils.logger import log_to_csv
 
 def update_knowledge_base(weather, co2, calendar, dht_data):
-    print(f"\n Updating knowledge base at {time.ctime()}")
+    print(f"\n Updating knowledge base at {time.time()}")
 
     timestamp = time.time()
     timestamp_human = datetime.datetime.utcfromtimestamp(timestamp).strftime("%Y-%m-%d %H:%M:%S")
