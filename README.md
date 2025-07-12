@@ -58,6 +58,10 @@ cd Smart-office-space-project
 ### 2. Install dependencies
 
 ```bash
+python3 -m venv venv
+source venv/bin/activate // for Mac and Linux
+venv\Scripts\activate  // for Windows
+
 pip install -r requirements.txt
 ```
 
