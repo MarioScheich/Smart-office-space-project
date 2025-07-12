@@ -1,7 +1,7 @@
 import csv
 import os
 
-def log_to_csv(data, filename="knowledge_log.csv"):
+def log_to_csv(data, filename="knowledge/knowledge_log.csv"):
     headers = [
         "timestamp_utc",
         "temperature",
