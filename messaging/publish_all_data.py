@@ -9,7 +9,7 @@ def publish_all_data(dht_data, weather, co2, calendar):
         )
         publish_message("sensor.dht.environment", msg)
     else:
-        print("❌ DHT sensor error:", dht_data["error"])
+        print(" DHT sensor error:", dht_data["error"])
 
     # --- Weatherbit Data ---
     print("Weather data fetched:", weather)
@@ -21,7 +21,7 @@ def publish_all_data(dht_data, weather, co2, calendar):
         )
         publish_message("sensor.weatherbit.environment", msg)
     else:
-        print("❌ Weather error:", weather["error"])
+        print(" Weather error:", weather["error"])
 
     # --- OpenMeteo CO₂ Data ---
     print("CO₂ data fetched:", co2)
@@ -32,7 +32,7 @@ def publish_all_data(dht_data, weather, co2, calendar):
         )
         publish_message("sensor.openmeteo.co2", msg)
     else:
-        print("❌ CO₂ data error:", co2["error"])
+        print(" CO₂ data error:", co2["error"])
 
     # --- Google Calendar Data ---
     print("Calendar data fetched:", calendar)
@@ -41,4 +41,4 @@ def publish_all_data(dht_data, weather, co2, calendar):
         msg = f"{count} upcoming events | Meeting now: {calendar['meeting']}"
         publish_message("google.calendar.events", msg)
     else:
-        print("❌ Calendar fetch failed or returned no events.")
+        print("Calendar fetch failed or returned no events.")
