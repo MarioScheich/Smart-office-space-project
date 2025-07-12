@@ -27,4 +27,4 @@ def update_knowledge_base(weather, co2, calendar, dht_data):
 
     # Log to CSV
     log_to_csv(knowledge)
-    print("📈 Appended to knowledge_log.csv")
+    print(" Appended to knowledge_log.csv")
