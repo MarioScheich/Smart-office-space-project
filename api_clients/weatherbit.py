@@ -3,7 +3,7 @@ from config.settings import WEATHERBIT_KEY, CITY
 
 def fetch_weather():
     try:
-        url = f"https://api.weatherbit.io/v2.0/current?city={CITY}&key={WEATHERBIT_KEY}"
+        url = "https://api.weatherbit.io/v2.0/current?city={}&key={}".format(CITY, WEATHERBIT_KEY)
         response = requests.get(url)
         data = response.json()
         weather_info = data['data'][0]
