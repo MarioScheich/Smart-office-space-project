@@ -19,4 +19,4 @@ channel.exchange_declare(exchange=EXCHANGE_NAME, exchange_type='topic', durable=
 def publish_message(routing_key: str, message: str):
     """Publish message to RabbitMQ topic exchange"""
     channel.basic_publish(exchange=EXCHANGE_NAME, routing_key=routing_key, body=message)
-    print(f"📤 Sent: {message}")
+    print(" Sent: {}".format(message))

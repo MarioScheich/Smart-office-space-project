@@ -5,8 +5,8 @@ from config.settings import LAT, LON
 def fetch_openmeteo_co2():
     try:
         url = (
-            f"https://air-quality-api.open-meteo.com/v1/air-quality?"
-            f"latitude={LAT}&longitude={LON}&hourly=carbon_monoxide"
+            "https://air-quality-api.open-meteo.com/v1/air-quality?"
+            "latitude={}&longitude={}&hourly=carbon_monoxide".format(LAT, LON)
         )
         response = requests.get(url)
         data = response.json()
