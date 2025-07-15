@@ -4,7 +4,7 @@ import time
 import datetime
 from utils.logger import log_to_csv
 
-def update_knowledge_base(weather, co2, calendar, dht_data):
+def update_knowledge_base(weather, co2, calendar, sensor_state):
     print("\n Updating knowledge base at {}".format(time.time()))
     timestamp = time.time()
     timestamp_human = datetime.datetime.utcfromtimestamp(timestamp).strftime("%Y-%m-%d %H:%M:%S")
@@ -12,10 +12,10 @@ def update_knowledge_base(weather, co2, calendar, dht_data):
     knowledge = {
         "timestamp": timestamp,
         "timestamp_human": timestamp_human,
-        "dht_data": dht_data,
         "weather": weather,
         "co2": co2,
-        "calendar": calendar
+        "calendar": calendar,
+        "sensor_state": sensor_state
     }
 
     os.makedirs("knowledge", exist_ok=True)
