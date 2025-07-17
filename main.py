@@ -9,6 +9,8 @@ import json
 # === Global combined sensor data holder ===
 sensor_state = {}
 
+from messaging.publisher import publish_message  # Ensure this is available on Mac too
+
 def handle_environment_data(ch, method, body):
     global sensor_state
     try:
@@ -20,8 +22,15 @@ def handle_environment_data(ch, method, body):
         else:
             print("No motion detected")
 
+        humidity = sensor_state.get("humidity")
+        print("Humidity:", humidity)
+
+        # Publish alert if humidity > 50
+        if humidity is not None and humidity > 50:
+            print("High humidity detected! Sending alert to RPI.")
+            publish_message("sensor.alert", {"alert": "high_humidity_alert"})
+
         print("Temperature:", sensor_state.get("temperature"))
-        print("Humidity:", sensor_state.get("humidity"))
         print("Buzzer activated:", sensor_state.get("buzzer_activated"))
 
         update_knowledge()
