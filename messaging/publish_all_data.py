@@ -1,3 +1,6 @@
+from messaging.publisher import publish_message
+
+
 def publish_all_data(dht_data, weather, co2, calendar):
     # --- DHT Sensor Data ---
     print("DHT data fetched:", dht_data)

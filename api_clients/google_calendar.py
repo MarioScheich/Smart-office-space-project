@@ -62,10 +62,23 @@ def fetch_calendar():
     event_list = []
     for event in events:
         start = event["start"].get("dateTime", event["start"].get("date"))
+        summary = event.get("summary", "No title")
+        
+        #  Fetch creator email (if available)
+        creator_email = event.get("creator", {}).get("email", "unknown")
+
+        #  Fetch attendee emails (if available)
+        attendees = []
+        if "attendees" in event:
+            attendees = [attendee.get("email") for attendee in event["attendees"] if "email" in attendee]
+
         event_list.append({
             "start": start,
-            "summary": event.get("summary", "No title")
+            "summary": summary,
+            "creator_email": creator_email,
+            "attendees": attendees
         })
+
 
     return {
         "meeting": bool(event_list),
