@@ -1,26 +1,40 @@
 import json
+import os
+# Get the directory where this script is located
+script_dir = os.path.dirname(os.path.abspath(__file__))
 
-with open("knowledge_base.json", "r") as f:
+# Build full path for problem.pddl in the same folder
+problem_path = os.path.join(script_dir, "problem.pddl")
+with open("knowledge/knowledge_base.json", "r") as f:
     data = json.load(f)
 
 init = []
 
-if data['calendar']['meeting']:
+# Check for calendar meeting
+if  data['calendar'].get('meeting'):
     init.append("(meeting-scheduled)")
-if data['motion']:
+
+# Check for motion (from sensor_state)
+if  data['sensor_state'].get('motion_detected'):
     init.append("(occupied)")
-if data['co2_signal']['carbonIntensity'] > 400:
+
+# Check for high CO2 level (use estimated ppm)
+if data['co2'].get('co2_estimated_ppm', 0) > 100:
     init.append("(high-co2)")
-if data['weather']['humidity'] > 80:
+
+# Check for high humidity (from sensor_state)
+if data['sensor_state'].get('humidity', 0) > 50:
     init.append("(high-humidity)")
-if data['weather']['temperature'] < 10:
+
+# Check for cold temperature (from sensor_state)
+if data['sensor_state'].get('temperature', 1000) < 10:
     init.append("(too-cold)")
-if data['weather']['condition'].lower() in ['rain', 'storm', 'snow']:
-    init.append("(forecast-bad)")
+
+# Since weather has an error, skip checking bad forecast
 
 goal = "(and (ventilated) (alert-sent) (email-sent))"
 
-init_block = "\\n    ".join(init)
+init_block = "\n    ".join(init)
 
 problem_content = f"""(define (problem smart-building-situation)
   (:domain smart-office)
@@ -34,5 +48,5 @@ problem_content = f"""(define (problem smart-building-situation)
   )
 )"""
 
-with open("problem.pddl", "w") as f:
+with open(problem_path, "w") as f:
     f.write(problem_content)

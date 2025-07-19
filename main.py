@@ -1,3 +1,5 @@
+import subprocess
+import os
 from api_clients.update import update_knowledge_base
 from api_clients.weatherbit import fetch_weather
 from api_clients.openmeteo import fetch_openmeteo_co2
@@ -34,6 +36,9 @@ def handle_environment_data(ch, method, body):
         print("Buzzer activated:", sensor_state.get("buzzer_activated"))
 
         update_knowledge()
+        print("Knowledge base updated with latest sensor data.")
+        run_ai_planning()
+        print("AI planning executed successfully.")
     except json.JSONDecodeError:
         print("Invalid environment data received:", body.decode())
 
@@ -49,10 +54,20 @@ def update_knowledge():
 
     update_knowledge_base(weather, co2, calendar, sensor_state)
     print("Knowledge base updated.")
+def run_ai_planning():
+    print("🔄 Generating problem file...")
+    os.system("python ai_planning/generate_problem.py")
+
+    print("🧠 Running Fast Downward planner...")
+    subprocess.run(["bash", "ai_planning/run_planner.sh"], check=False)
+
+    print("⚙️ Executing plan...")
+    os.system("python ai_planning/plan_executor.py")
 
 def main():
     print("Starting environment data collection...")
     start_subscriber("sensor.environment", handle_environment_data)
+    
 
 if __name__ == "__main__":
     main()

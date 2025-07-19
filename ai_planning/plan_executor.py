@@ -34,6 +34,4 @@ def execute_plan(plan_file="plan.txt"):
         elif "send-email-weather-update" in action:
             send_email("Weather Forecast + Temp", "Weather is bad. Please be prepared.")
 
-# Run if this script is executed
-if __name__ == "__main__":
-    execute_plan()
+

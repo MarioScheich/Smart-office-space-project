@@ -75,8 +75,16 @@ WEATHERBIT_API_KEY=your_key
 OPENMETEO_API_KEY=your_key
 NOTIFICATION_EMAIL=your_email@example.com
 ```
+### 4. Install the AI planner : fast_downward
 
-### 4. Run the main application
+cd ai_planning
+git clone https://github.com/aibasel/downward.git
+cd downward
+python3 build.py -j2
+
+now upadate the path to fast-downward.py in the run_planner.sh
+
+### 5. Run the main application
 
 ```bash
 python main.py
