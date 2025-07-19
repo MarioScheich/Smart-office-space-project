@@ -33,3 +33,6 @@ knowledge_log.csv
 
 # === Jupyter notebooks checkpoint ===
 .ipynb_checkpoints/
+
+
+/ai_planning/downward/
