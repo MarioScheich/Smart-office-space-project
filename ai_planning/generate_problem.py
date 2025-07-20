@@ -17,10 +17,8 @@ if data['co2'].get('co2_estimated_ppm', 0) > 160:
 
 # if data['sensor_state'].get('humidity', 0) > 50:
 #     init.append("(high-humidity)")
-
-# Check for cold temperature (from sensor_state)
-if data['sensor_state'].get('temperature', 1000) < 10:
-    init.append("(too-cold)")
+# if data['sensor_state'].get('temperature', 1000) < 10:
+#     init.append("(too-cold)")
 
 description = data.get("weather", {}).get("description", "").lower()
 

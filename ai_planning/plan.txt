@@ -15,7 +15,7 @@ Parsing domain
 	->Parsing condition
 'and' expects as argument #1 a non-empty block.
 Syntax: (and CONDITION*)
-Got: occupied
+Got: high-co2
 translate exit code: 31
 
 Driver aborting after translate

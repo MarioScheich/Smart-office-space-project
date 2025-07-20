@@ -10,7 +10,7 @@
     (high-co2)
     (high-humidity)
     (too-cold)
-    (rain-expected)             ;; ✅ NEW
+    (rain-expected)             
     (forecast-bad)
     (window-opened)
     (alert-sent)
