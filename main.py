@@ -11,7 +11,7 @@ from messaging.subscriber import start_subscriber
 
 sensor_state = {}
 last_planning_time = 0
-PLANNING_INTERVAL_SECONDS = 600  # Default: 10 minutes
+PLANNING_INTERVAL_SECONDS = 10  # Default: 10 minutes
 
 def handle_environment_data(ch, method, body):
     global sensor_state
