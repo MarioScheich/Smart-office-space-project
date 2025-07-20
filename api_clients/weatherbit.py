@@ -1,7 +1,13 @@
 import requests
 from config.settings import WEATHERBIT_KEY, CITY
-
+use_api = False
 def fetch_weather():
+    if not use_api:
+        return {
+            "temperature": 22,
+            "description": "Broken clouds",
+            "humidity": 50,
+    }
     try:
         url = "https://api.weatherbit.io/v2.0/current?city={}&key={}".format(CITY, WEATHERBIT_KEY)
         response = requests.get(url)

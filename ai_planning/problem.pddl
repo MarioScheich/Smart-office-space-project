@@ -2,8 +2,7 @@
   (:domain smart-office)
 
   (:init
-    (meeting-scheduled)
-    (high-co2)
+    
   )
 
   (:goal
