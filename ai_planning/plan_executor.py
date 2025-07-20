@@ -43,7 +43,7 @@ def execute_plan(plan_file=plan_path):
     for line in plan:
         action = line.strip().split(":")[-1].strip().lower()
         if "send-alert" in action:
-            send_email("CO₂ Alert", "Please ventilate the room!")
+            beep_buzzer()
         elif "open-window" in action:
             control_servo(open=True)
         elif "close-window" in action:

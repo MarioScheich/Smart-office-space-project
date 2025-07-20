@@ -1,5 +1,6 @@
 import os
 import json
+import time
 import subprocess
 from ai_planning.plan_executor import execute_plan
 from api_clients.update import update_knowledge_base
@@ -7,6 +8,8 @@ from api_clients.weatherbit import fetch_weather
 from api_clients.openmeteo import fetch_openmeteo_co2
 from api_clients.google_calendar import fetch_calendar
 from messaging.subscriber import start_subscriber
+
+
 
 sensor_state = {}
 
@@ -42,10 +45,12 @@ def run_ai_planning():
     execute_plan()
     print("(*)Planning and execution completed successfully.")
 
+
+
 def main():
     print("Starting environment data collection...")
     start_subscriber("sensor.environment", handle_environment_data)
-    
+    #notify_meeting_start()
 
 if __name__ == "__main__":
     main()
