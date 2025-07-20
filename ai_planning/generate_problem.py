@@ -1,10 +1,14 @@
 import json
 import os
+import csv
+
 # Get the directory where this script is located
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Build full path for problem.pddl in the same folder
 problem_path = os.path.join(script_dir, "problem.pddl")
+
+# Read knowledge base JSON
 with open("knowledge/knowledge_base.json", "r") as f:
     data = json.load(f)
 
@@ -30,7 +34,18 @@ if data['sensor_state'].get('humidity', 0) > 50:
 if data['sensor_state'].get('temperature', 1000) < 10:
     init.append("(too-cold)")
 
-# Since weather has an error, skip checking bad forecast
+# === ✅ NEW: Check if forecast has changed using CSV log
+try:
+    with open("knowledge/knowledge_log.csv", "r") as csvfile:
+        reader = csv.DictReader(csvfile)
+        rows = list(reader)
+        if len(rows) >= 2:
+            last = json.loads(rows[-1]["weather"])
+            prev = json.loads(rows[-2]["weather"])
+            if last != prev:
+                init.append("(forecast-bad)")
+except Exception as e:
+    print("⚠️ Could not compare weather from CSV:", e)
 
 goal = "(and (ventilated) (alert-sent) (email-sent))"
 
