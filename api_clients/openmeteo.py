@@ -7,7 +7,7 @@ def fetch_openmeteo_co2():
         # Return dummy data
         return {
             "carbon_monoxide_ugm3": 120.0,
-            "co2_estimated_ppm": round(120.0 / 1.145, 2),
+            "co2_estimated_ppm": 150,
             "source": "Dummy"
         }
 
