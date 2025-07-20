@@ -9,10 +9,7 @@ from api_clients.openmeteo import fetch_openmeteo_co2
 from api_clients.google_calendar import fetch_calendar
 from messaging.subscriber import start_subscriber
 
-# Global state
 sensor_state = {}
-
-# Time control
 last_planning_time = 0
 PLANNING_INTERVAL_SECONDS = 600  # Default: 10 minutes
 
