@@ -10,6 +10,7 @@
     (high-co2)
     (high-humidity)
     (too-cold)
+    (rain-expected)             ;; ✅ NEW
     (forecast-bad)
     (window-opened)
     (alert-sent)
@@ -20,12 +21,12 @@
   )
 
   (:action open-window
-    :precondition (and occupied (not high-co2) (not high-humidity) (not too-cold))
+    :precondition (and high-co2 high-humidity (not too-cold))
     :effect (and (window-opened) (ventilated))
   )
 
   (:action close-window
-    :precondition (window-opened)
+    :precondition (or rain-expected too-cold)
     :effect (not window-opened)
   )
 
@@ -54,3 +55,6 @@
     :effect (email-sent)
   )
 )
+
+  
+

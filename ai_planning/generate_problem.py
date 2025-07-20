@@ -18,8 +18,18 @@ if data['co2'].get('co2_estimated_ppm', 0) > 160:
 # if data['sensor_state'].get('humidity', 0) > 50:
 #     init.append("(high-humidity)")
 
-# if data['sensor_state'].get('temperature', 1000) < 10:
-#     init.append("(too-cold)")
+# Check for cold temperature (from sensor_state)
+if data['sensor_state'].get('temperature', 1000) < 10:
+    init.append("(too-cold)")
+
+description = data.get("weather", {}).get("description", "").lower()
+
+rain_keywords = ["Heavy rain", "Shower", "Thunderstorm", "Storm", "Moderate rain"]
+if any(keyword in description for keyword in rain_keywords):
+    init.append("(rain-expected)")
+
+
+# === ✅ NEW: Check if forecast has changed using CSV log
 try:
     with open("knowledge/knowledge_log.csv", "r") as csvfile:
         reader = csv.DictReader(csvfile)
