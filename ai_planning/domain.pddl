@@ -10,7 +10,7 @@
     (high-co2)
     (high-humidity)
     (too-cold)
-    (rain-expected)             
+    (rain-expected)
     (forecast-bad)
     (window-opened)
     (alert-sent)
@@ -20,41 +20,39 @@
     (email-sent)
   )
 
+  ;; ✅ Open window if (high-co2 OR high-humidity) AND not (too-cold)
   (:action open-window
-    :precondition (and high-co2 high-humidity (not too-cold))
+    :precondition (and (or (high-co2) (high-humidity)) (not (too-cold)))
     :effect (and (window-opened) (ventilated))
   )
 
+  ;; ✅ Close window if cold or rain expected
   (:action close-window
-    :precondition (or rain-expected too-cold)
-    :effect (not window-opened)
+    :precondition (or (rain-expected) (too-cold))
+    :effect (not (window-opened))
   )
 
+  ;; ✅ Turn on light if occupied
   (:action turn-on-light
-    :precondition (or meeting-scheduled occupied)
+    :precondition (occupied)
     :effect (light-on)
   )
 
+  ;; ✅ Turn off light if NOT occupied
   (:action turn-off-light
-    :precondition (not occupied)
-    :effect (not light-on)
+    :precondition (not (occupied))
+    :effect (not (light-on))
   )
 
-  (:action send-alert
-    :precondition (high-co2)
-    :effect (alert-sent)
-  )
-
+  ;; ✅ Activate buzzer if high CO2
   (:action activate-buzzer
-    :precondition (and meeting-scheduled occupied)
+    :precondition (high-co2)
     :effect (buzzer-on)
   )
 
+  ;; ✅ Send email update if forecast changed and meeting scheduled
   (:action send-email-weather-update
-    :precondition (and forecast-bad meeting-scheduled)
+    :precondition (and (forecast-bad) (meeting-scheduled))
     :effect (email-sent)
   )
 )
-
-  
-

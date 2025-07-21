@@ -7,15 +7,11 @@ INFO     translator time limit: None
 INFO     translator memory limit: None
 INFO     translator command line string: /Users/feyn/uni/SmartCities/Smart-office-space-project/venv/bin/python3 /Users/feyn/uni/SmartCities/Smart-office-space-project/ai_planning/downward/builds/release/bin/translate/translate.py /Users/feyn/uni/SmartCities/Smart-office-space-project/ai_planning/domain.pddl /Users/feyn/uni/SmartCities/Smart-office-space-project/ai_planning/problem.pddl --sas-file output.sas
 Parsing...
-Parsing domain
-	->Parsing axiom/action entry #1
-	->Parsing action #1
-	->Parsing action 'open-window'
-	->Parsing precondition
+Parsing task
+	->Parsing goal
 	->Parsing condition
-'and' expects as argument #1 a non-empty block.
-Syntax: (and CONDITION*)
-Got: high-co2
+Expected logical operator or predicate name
+Got: send-meeting-scheduled
 translate exit code: 31
 
 Driver aborting after translate
