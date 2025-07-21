@@ -1,10 +1,14 @@
+import os
 import requests
 import datetime
+from dotenv import load_dotenv
 from config.settings import LAT, LON
-use_api=False
+load_dotenv()
+is_test_str = os.getenv("IS_API_TEST", "False")  # Default to "False" if not set
+is_api_test = is_test_str.lower() in ("true", "1", "yes")
 def fetch_openmeteo_co2():
-    if not use_api:
-        # Return dummy data
+    if is_api_test:
+        print("❌Running in test mode for Open-Meteo CO2 data.")
         return {
             "carbon_monoxide_ugm3": 120.0,
             "co2_estimated_ppm": 150,

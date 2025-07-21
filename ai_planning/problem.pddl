@@ -2,10 +2,10 @@
   (:domain smart-office)
 
   (:init
-    
+    (meeting-scheduled)
   )
 
   (:goal
-    (and (ventilated) (alert-sent) (email-sent))
+    (and (send-meeting-scheduled))
   )
 )

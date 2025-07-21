@@ -1,13 +1,11 @@
 
 import os
 from messaging.publisher import publish_message
+from utils.notify_meeting_start import notify_meeting_start
 
-# Get the directory where this script is located
 script_dir = os.path.dirname(os.path.abspath(__file__))
 plan_path = os.path.join(script_dir, "plan.txt")
-def send_email(subject, message):
-    print(f"📧 Email sent: {subject} - {message}")
-
+  
 def control_servo(open=True):
     if open:
         publish_message("sensor.servo", {"action": "open_window"})
@@ -39,23 +37,37 @@ def beep_buzzer():
 def execute_plan(plan_file=plan_path):
     with open(plan_file, "r") as f:
         plan = f.readlines()
-
+    # print("\n====  Plan.txt ====\n")
+    # for idx, line in enumerate(plan, start=1):
+    #     clean_line = line.strip()
+    #     if clean_line:
+    #         print(f"{idx:>2}. {clean_line}")
+    # print("\n===================\n")
     for line in plan:
         action = line.strip().split(":")[-1].strip().lower()
         if "send-alert" in action:
             beep_buzzer()
+        elif "ventilated" in action:
+            print("Ventilating room...")
+            control_servo(open=True)
+        elif "buzzer-on" in action:
+            print("Executing action:", action)
+            beep_buzzer()
         elif "open-window" in action:
+            print("Executing action:", action)
             control_servo(open=True)
         elif "close-window" in action:
             control_servo(open=False)
-        elif "turn-on-light" in action:
+        elif "turn-on-light"   in action:
+            print("Executing action: LIGHT ON")
             turn_on_led()
         elif "turn-off-light" in action:
             turn_off_led()
         elif "activate-buzzer" in action:
             #activate_buzzer()
             beep_buzzer()
-        elif "send-email-weather-update" in action:
-            send_email("Weather Forecast + Temp", "Weather is bad. Please be prepared.")
+        elif "send-meeting-scheduled" in action:
+            notify_meeting_start()
+            print("📧 Email sent: ")
 
-
+            

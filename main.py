@@ -11,7 +11,7 @@ from messaging.subscriber import start_subscriber
 
 sensor_state = {}
 last_planning_time = 0
-PLANNING_INTERVAL_SECONDS = 10  # Default: 10 minutes
+PLANNING_INTERVAL_SECONDS = 5  # Default: 10 minutes
 
 def handle_environment_data(ch, method, body):
     global sensor_state
@@ -53,6 +53,21 @@ def run_ai_planning():
     print("(3) Executing plan...")
     execute_plan()
     print("(*) Planning and execution completed successfully.")
+    # Delete the plan.txt file
+    plan_path = "ai_planning/plan.txt"
+    problem_path = "ai_planning/problem.pddl"
+    # if os.path.exists(problem_path):
+    #     os.remove(problem_path)
+    #     print(f"(*) Deleted {problem_path}")
+    # else:
+    #     print(f"(!!) Warning: {problem_path} not found")
+    # if os.path.exists(plan_path):
+    #     os.remove(plan_path)
+    #     print(f"(*) Deleted {plan_path}")
+    # else:
+    #     print(f"(!!) Warning: {plan_path} not found")
+
+    # print("(*) Planning and execution completed successfully.")
 
 def main():
     print("Starting environment data collection...")
