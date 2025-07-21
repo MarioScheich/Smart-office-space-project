@@ -5,6 +5,37 @@
 An intelligent building management system designed to improve comfort, energy efficiency, security, and productivity in modern office environments. It uses sensor data and API integrations to automate lighting, air quality, security alerts, and meeting logistics.
 
 ---
+# 🌐 Smart Cities IoT Client Reference
+
+This project makes use of the open-source Raspberry Pi IoT client developed for smart city applications:
+
+🔗 **GitHub Repository:**  
+[Smart-Cities-and-IOT-rpi-client](https://github.com/iamaashikms/Smart-Cities-and-IOT-rpi-client)
+
+## 📦 Features from the Reference Project
+
+The referenced project provides:
+
+- ✅ Real-time sensor data collection on Raspberry Pi
+- 📤 MQTT publishing for sensor values
+- 🚨 Asynchronous alert listener for air quality events
+- 🌍 Integration with Open-Meteo’s air quality API
+- 🧩 Modular and lightweight Python architecture
+
+## 🛠️ Use in This Project
+
+This project leverages parts of the above client for:
+
+- Reliable sensor interfacing
+- Scheduled data reporting
+- Environmental monitoring using open data sources
+
+## 📚 License & Attribution
+
+Original code from [@iamaashikms](https://github.com/iamaashikms).  
+Licensed under the same terms as the source repository unless stated otherwise.
+
+---
 
 ## Features
 
